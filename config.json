@@ -1,0 +1,30 @@
+{
+    "units": {
+        "guy": {
+            "graphic": "something.png",
+            "supplycap": 50,
+            "orders": {
+                "move": {"speed": 1, "supplies": 1},
+                "attach": {},
+                "attack": {"range": 2, "supplies": 1, "cooldown": 0},
+                "resupply": {},
+                "build": {"multiplier": 1.0}
+            }
+        },
+        "base": {
+            "graphic": "something.png",
+            "supplycap": 1000,
+            "orders": {
+                "spawn": {},
+                "gensupplies": {}
+            }
+        }
+    },
+    "orders": {
+        "move": {
+            "description": "move you unit to a tactically advantageous position",
+            "arguments": ["position"},
+            "options": {"stop_when_attacked": "bool"}
+        }
+    }
+}
