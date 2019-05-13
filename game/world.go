@@ -12,7 +12,7 @@ func (world *World) Step() {
     }
 }
 
-func (world *World) Order(unitno int, Order order) {
-    Units[unitno] = func(unit *Unit) { order(Unists[unitno], world) }
+func (world *World) Order(unitno int, order Order) {
+    world.Units[unitno].currentOrder = func() { order(&world.Units[unitno], world) }
 }
 
