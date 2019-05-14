@@ -1,12 +1,31 @@
-export function init() {
-  draw()
+import { draw } from './render/main.js'
+import { setup as setupServer } from './server/main.js'
+import { setup as setupControls } from './controls/main.js'
+
+export function init () {
+  let game = setup()
+  let time1 = window.performance.now()
+  let time2 = 0
+  const looper = () => {
+    time2 = window.performance.now()
+    loop(time2 - time1, game)
+    time1 = time2
+
+    window.requestAnimationFrame(looper)
+  }
+  window.requestAnimationFrame(looper)
 }
 
-function draw() {
-  let canvas = document.getElementById('screen')
-  if (canvas.getContext) {
-    let ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#494949'
-    ctx.fillRect(0, 0, 1000, 1000)
-  }
+function setup () {
+  let game = {}
+  game.world = {}
+
+  // setupServer(game)
+  setupControls(game)
+
+  return game
+}
+
+function loop (delta, game) {
+  draw(delta, game)
 }
