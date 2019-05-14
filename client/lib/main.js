@@ -1,4 +1,6 @@
 import { draw } from './render/main.js'
+
+import { setup as setupRender } from './render/main.js'
 import { setup as setupServer } from './server/main.js'
 import { setup as setupControls } from './controls/main.js'
 
@@ -20,8 +22,9 @@ function setup () {
   let game = {}
   game.world = {}
 
-  // setupServer(game)
+  setupServer(game)
   setupControls(game)
+  setupRender(game)
 
   return game
 }

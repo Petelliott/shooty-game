@@ -1,3 +1,6 @@
+export function setup (game) {
+}
+
 export function draw (delta, game) {
   let canvas = document.getElementById('screen')
   if (canvas.getContext) {
