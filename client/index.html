@@ -8,15 +8,17 @@
         window.init = init
     </script>
     <style type="text/css">
-      body {
-          padding: 0;
-          margin: 0;
-          overflow: hidden;
-      }
-      canvas {
-          width: 100vw;
-          height: 100vh;
-      }
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
     </style>
   </head>
   <body onload="init()">
