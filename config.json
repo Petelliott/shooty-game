@@ -1,4 +1,34 @@
 {
+    "units": {
+        "guy": {
+            "graphic": "something.png",
+            "supplycap": 50,
+            "orders": {
+                "core:move": { "speed": 1, "supplies": 1 },
+                "core:attach": {},
+                "core:attack": { "range": 2, "supplies": 1, "cooldown": 0 },
+                "core:resupply": {},
+                "core:build": { "multiplier": 1.0 }
+            }
+        },
+        "base": {
+            "graphic": "something.png",
+            "supplycap": 1000,
+            "orders": {
+                "core:spawn": {},
+                "core:gensupplies": {}
+            }
+        }
+    },
+    "orders": {
+        "core:move": {
+            "description": "move you unit to a tactically advantageous position",
+            "options": {
+                "destination": "position",
+                "stop_when_can_attack": "bool"
+            }
+        }
+    },
     "graphics": {
         "tilesets": {
             "kenney1bit": {
