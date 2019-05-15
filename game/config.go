@@ -4,6 +4,6 @@ import (
     "encoding/json"
 )
 
-type Config interface {
+type OrderConfig interface {
     NewOrder(name string, options *json.RawMessage) Order
 }
