@@ -29,6 +29,12 @@
             }
         }
     },
+    "tiles": {
+        "ground": {
+            "movementCost": 1,
+            "render": "ground"
+        }
+    },
     "graphics": {
         "tilesets": {
             "kenney1bit": {
