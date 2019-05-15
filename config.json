@@ -1,7 +1,7 @@
 {
     "units": {
         "guy": {
-            "graphic": "something.png",
+            "graphic": "wizard",
             "supplycap": 50,
             "orders": {
                 "core:move": { "speed": 1, "supplies": 1 },
@@ -12,7 +12,7 @@
             }
         },
         "base": {
-            "graphic": "something.png",
+            "graphic": "castle",
             "supplycap": 1000,
             "orders": {
                 "core:spawn": {},
@@ -43,9 +43,15 @@
         "images": {
             "ground": {
                 "srcType": "tileset",
-                "src": "kenney1bit",
-                "x": 0,
-                "y": 0
+                "src": "kenney1bit", "x": 0, "y": 0
+            },
+            "wizard": {
+                "srcType": "tileset",
+                "src": "kenney1bit", "x": 26, "y": 9
+            },
+            "castle": {
+                "srcType": "tileset",
+                "src": "kenney1bit", "x": 6, "y": 19
             },
             "tilePreview": {
                 "srcType": "image",
