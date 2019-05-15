@@ -14,8 +14,6 @@ export function draw (delta, game) {
     ctx.fillStyle = '#494949'
     ctx.fillRect(0, 0, game.controls.canvas.x, game.controls.canvas.y)
     renderWorld(delta, game, ctx)
-    drawImage(ctx, game, 'ground', 0, 0, 100, 100)
-    drawImage(ctx, game, 'tilePreview', 100, 100, 900, 900)
   }
 }
 
