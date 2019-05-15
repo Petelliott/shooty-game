@@ -1,6 +1,23 @@
 {
     "graphics": {
-        "tilesets": []
+        "tilesets": {
+            "kenney1bit": {
+                "tiles": 1024,
+                "columns": 32,
+                "tileWidth": 16,
+                "tileHeight": 16,
+                "tileSpacing": 1,
+                "src": "res/kenny_bg.png"
+            }
+        },
+        "images": {
+            "ground": {
+                "srcType": "tileset",
+                "src": "kenney1bit",
+                "x": 0,
+                "y": 0
+            }
+        }
     }
 
 }
