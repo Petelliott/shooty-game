@@ -12,7 +12,7 @@ const (
 )
 
 type UnitClass struct {
-    name string
+    Name string
     Graphic string `json:"graphic"`
     SupplyCap int `json:"supplycap"`
     SupportedOrders map[string]*json.RawMessage `json:"orders"`
@@ -23,7 +23,7 @@ func (u *UnitClass) Spawn(supplies int, x, y int, team Team) Unit {
 }
 
 func (u *UnitClass) MarshalJSON() ([]byte, error) {
-	return json.Marshal(u.name)
+	return json.Marshal(u.Name)
 }
 
 type Unit struct {
