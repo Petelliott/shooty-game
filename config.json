@@ -16,6 +16,10 @@
                 "src": "kenney1bit",
                 "x": 0,
                 "y": 0
+            },
+            "tilePreview": {
+                "srcType": "image",
+                "src": "res/kenny_bg.png"
             }
         }
     }
