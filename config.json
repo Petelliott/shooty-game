@@ -4,11 +4,11 @@
             "graphic": "something.png",
             "supplycap": 50,
             "orders": {
-                "core:move": {"speed": 1, "supplies": 1},
+                "core:move": { "speed": 1, "supplies": 1 },
                 "core:attach": {},
-                "core:attack": {"range": 2, "supplies": 1, "cooldown": 0},
+                "core:attack": { "range": 2, "supplies": 1, "cooldown": 0 },
                 "core:resupply": {},
-                "core:build": {"multiplier": 1.0}
+                "core:build": { "multiplier": 1.0 }
             }
         },
         "base": {
@@ -23,7 +23,35 @@
     "orders": {
         "core:move": {
             "description": "move you unit to a tactically advantageous position",
-            "options": {"destination": "position", "stop_when_can_attack": "bool"}
+            "options": {
+                "destination": "position",
+                "stop_when_can_attack": "bool"
+            }
+        }
+    },
+    "graphics": {
+        "tilesets": {
+            "kenney1bit": {
+                "tiles": 1024,
+                "columns": 32,
+                "tileWidth": 16,
+                "tileHeight": 16,
+                "tileSpacing": 1,
+                "src": "res/kenny_bg.png"
+            }
+        },
+        "images": {
+            "ground": {
+                "srcType": "tileset",
+                "src": "kenney1bit",
+                "x": 0,
+                "y": 0
+            },
+            "tilePreview": {
+                "srcType": "image",
+                "src": "res/kenny_bg.png"
+            }
         }
     }
+
 }
