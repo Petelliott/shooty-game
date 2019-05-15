@@ -1,25 +1,25 @@
 package game
 
 import (
-    "encoding/json"
+	"encoding/json"
 )
 
 type Team string
 
 const (
-    RED Team = "red"
-    BLUE Team = "blue"
+	RED  Team = "red"
+	BLUE Team = "blue"
 )
 
 type UnitClass struct {
-    Name string
-    Graphic string `json:"graphic"`
-    SupplyCap int `json:"supplycap"`
-    SupportedOrders map[string]*json.RawMessage `json:"orders"`
+	Name            string
+	Graphic         string                      `json:"graphic"`
+	SupplyCap       int                         `json:"supplycap"`
+	SupportedOrders map[string]*json.RawMessage `json:"orders"`
 }
 
 func (u *UnitClass) Spawn(supplies int, x, y int, team Team) Unit {
-    return Unit{u, x, y, team, supplies, nil}
+	return Unit{u, x, y, team, supplies, nil}
 }
 
 func (u *UnitClass) MarshalJSON() ([]byte, error) {
@@ -27,10 +27,10 @@ func (u *UnitClass) MarshalJSON() ([]byte, error) {
 }
 
 type Unit struct {
-    utype *UnitClass `json:"utype"`
-    x int `json:"x"`
-    y int `json:"y"`
-    team Team `json:"team"`
-    Supplies int `json:"supplies"`
-    currentOrder func()
+	Utype        *UnitClass `json:"utype"`
+	X            int        `json:"x"`
+	Y            int        `json:"y"`
+	Team         Team       `json:"team"`
+	Supplies     int        `json:"supplies"`
+	currentOrder func()
 }
