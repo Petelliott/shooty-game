@@ -1,5 +1,7 @@
 package game
 
+import "encoding/json"
+
 type Map struct {
 	Tiles          []byte          `json:"tiles"`
 	size           int             `json:"size"`
