@@ -16,3 +16,7 @@ func (world *World) Order(unitno int, order Order) {
     world.Units[unitno].currentOrder = func() { order(&world.Units[unitno], world) }
 }
 
+func (world *World) Spawn(u Unit) {
+    world.Units = append(world.Units, u)
+}
+
