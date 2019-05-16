@@ -6,11 +6,13 @@ type Game struct {
     World World
 }
 
-func NewStandardGame(oc OrderConfig, uc UnitsConfig, m Map) *Game {
+func NewGame(oc OrderConfig, uc UnitsConfig, m Map) *Game {
     game := Game{oc, uc, World{m, []Unit{}}}
 
-    game.World.Spawn(uc.GetUnitClass("base").Spawn(1000, 0, 0, RED))
-    game.World.Spawn(uc.GetUnitClass("base").Spawn(1000, 5, 5, BLUE))
-
     return &game
+}
+
+func (g *Game) AddTeam(x, y int, team Team) {
+	g.World.Spawn(
+		g.UnitsConfig.GetUnitClass("base").Spawn(1000, x, y, team))
 }
