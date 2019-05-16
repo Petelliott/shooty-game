@@ -13,7 +13,7 @@ func main() {
 	dc := dynconfig.Open(os.Args[1])
 	jc := jsonconfig.Open(os.Args[2])
 
-	game.NewStandardGame(&dc, &jc, game.NewMap(10))
+	game.NewGame(&dc, &jc, game.NewMap(10))
 
 	router := gin.Default()
 

@@ -1,4 +1,4 @@
-package sgs
+package safews
 
 import (
 	"github.com/gorilla/websocket"
