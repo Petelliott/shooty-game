@@ -7,6 +7,7 @@ type World struct {
 }
 
 func (world *World) Step() {
+	//TODO: random order of turns maybe?
     for _, unit := range world.Units {
         unit.currentOrder()
     }
