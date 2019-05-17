@@ -7,6 +7,8 @@ import (
     "plugin"
 )
 
+type OrderDesignator func(options *json.RawMessage) game.Order
+
 func (conf *Dynconfig) NewOrder(name string, options *json.RawMessage) game.Order {
     spec := strings.Split(name, ":")
     pkg := spec[0]
@@ -22,5 +24,5 @@ func (conf *Dynconfig) NewOrder(name string, options *json.RawMessage) game.Orde
         panic(err)
     }
 
-    return order.(game.Order)
+    return order.(OrderDesignator)(options)
 }
