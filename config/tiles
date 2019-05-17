@@ -1,0 +1,6 @@
+{
+    "ground": {
+        "movementCost": 1,
+            "render": "ground"
+    }
+}
