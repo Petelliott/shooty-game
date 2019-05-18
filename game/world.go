@@ -14,7 +14,8 @@ func (world *World) Step() {
 }
 
 func (world *World) Order(unitno int, order Order) {
-    world.Units[unitno].currentOrder = func() { order(&world.Units[unitno], world) }
+	o := order(&world.Units[unitno])
+    world.Units[unitno].currentOrder = func() { o(world) }
 }
 
 func (world *World) Spawn(u Unit) {

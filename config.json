@@ -4,10 +4,10 @@
             "graphic": "wizard",
             "supplycap": 50,
             "orders": {
-                "core:move": { "speed": 1, "supplies": 1 },
-                "core:attach": {},
-                "core:attack": { "range": 2, "supplies": 1, "cooldown": 0 },
-                "core:resupply": {},
+                "core:Move": { "speed": 1, "supplies": 1 },
+                "core:Attach": {},
+                "core:Attack": { "range": 2, "supplies": 1, "cooldown": 0 },
+                "core:Resupply": {},
                 "core:build": { "multiplier": 1.0 }
             }
         },
@@ -15,17 +15,16 @@
             "graphic": "castle",
             "supplycap": 1000,
             "orders": {
-                "core:spawn": {},
-                "core:gensupplies": {}
+                "core:Spawn": {},
+                "core:Gensupplies": {}
             }
         }
     },
     "orders": {
-        "core:move": {
+        "core:Move": {
             "description": "move you unit to a tactically advantageous position",
             "options": {
-                "destination": "position",
-                "stop_when_can_attack": "bool"
+                "destination": "position"
             }
         }
     },
