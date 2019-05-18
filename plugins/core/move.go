@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/petelliott/shooty-game/game"
 	"encoding/json"
+	"github.com/petelliott/shooty-game/game"
+	"github.com/petelliott/shooty-game/orderutil"
 	"math"
 )
 
@@ -11,38 +12,28 @@ type MoveOptions struct {
 }
 
 type MoveUnitConf struct {
-	Speed		int `json:"speed"`
-	Supplies	int `json:"supplies`
+	Speed    int `json:"speed"`
+	Supplies int `json:"supplies`
 }
 
 func Move(options *json.RawMessage) game.Order {
 	var opt MoveOptions
-	err := json.Unmarshal([]byte(*options), &opt)
-	if err != nil {
-		panic(err)
-	}
+	var conf MoveUnitConf
 
-	return func(unit *game.Unit) func(world *game.World) {
-		var uc MoveUnitConf
-		err := json.Unmarshal([]byte(*unit.Utype.SupportedOrders["core:Move"]), &uc)
-		if err != nil {
-			panic(err)
-		}
-
-		return func (world *game.World) {
-			if unit.Supplies >= uc.Supplies {
+	return orderutil.Order(options, "core:Move", &opt, &conf,
+		func(unit *game.Unit, world *game.World) {
+			if unit.Supplies >= conf.Supplies {
 				dx := float64(opt.Destination.X - unit.X)
 				dy := float64(opt.Destination.Y - unit.Y)
 
 				hyp := math.Sqrt(dx*dx + dy*dy)
-				frac := float64(uc.Speed) / hyp
+				frac := float64(conf.Speed) / hyp
 
-				unit.X += int(math.Round(frac*dx))
-				unit.Y += int(math.Round(frac*dy))
+				unit.X += int(math.Round(frac * dx))
+				unit.Y += int(math.Round(frac * dy))
 
-				unit.Supplies -= uc.Supplies
+				unit.Supplies -= conf.Supplies
 			}
 			// TODO some kind of alert to the user?
-		}
-	}
+		})
 }
