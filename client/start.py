@@ -1,8 +1,11 @@
+from subprocess import Popen, PIPE
+
 import tornado.ioloop
 import tornado.web
 import tornado.autoreload
 import tornado.template
 import tornado.escape
+
 import os
 
 debug = True
@@ -34,14 +37,21 @@ def main():
     tornado.ioloop.IOLoop.instance().start()
 
 def loadData():
-    with open("../config.json", "r") as f:
-        global config
-        config = f.read()
+    config = readConfig('../config')
 
     with open("./index.html", "r") as f:
         global page
         data = f.read()
         page = tornado.escape.squeeze(data.replace("JCONFIG", config))
+
+def readConfig(loc):
+    p = Popen(['go', 'run', 'github.com/petelliott/shooty-game/jsondir/d2json', loc],
+            stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    output, e = p.communicate(b"input data that is passed to subprocess' stdin")
+    if e:
+        print(e)
+
+    return output.decode("utf-8")
 
 if __name__ == "__main__":
     main()
