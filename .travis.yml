@@ -1,18 +1,10 @@
-language: generic
 
-jobs:
+matrix:
   include:
-    - stage: lint
-      matrix:
-        include:
-          - language: go
-            install:
-              - go get -u golang.org/x/lint/golint
-            script:
-              - golint ./...
-    #- stage: test
-    #  matrix:
-    #    include:
-    #- stage: deploy
-    #  matrix:
-    #    include:
+    - language: go
+      install:
+        - go get -u golang.org/x/lint/golint
+      script:
+        - golint ./...
+        - go test -cover ./...
+
