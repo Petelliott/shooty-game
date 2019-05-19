@@ -2,7 +2,7 @@
     "core:Move": {
         "description": "move you unit to a tactically advantageous position",
             "options": {
-                "destination": "position",
+                "destination": "position"
             }
     }
 }
