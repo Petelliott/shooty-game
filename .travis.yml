@@ -2,7 +2,7 @@
 matrix:
   include:
     - language: go
-      install:
+      before_script:
         - go get -u golang.org/x/lint/golint
       script:
         - golint ./...
