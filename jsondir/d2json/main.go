@@ -4,11 +4,11 @@ import (
 	"github.com/petelliott/shooty-game/jsondir"
 	"encoding/json"
 	"os"
-	"runtime/debug"
 )
 
 func main() {
-	b, err := json.MarshalIndent(jsondir.Jdir(os.Args[1]), "", "    ")
+	jd := jsondir.Jdir(os.Args[1], jsondir.DefaultEncoder())
+	b, err := json.MarshalIndent(jd, "", "    ")
 	if err != nil {
 		panic(err)
 	}
