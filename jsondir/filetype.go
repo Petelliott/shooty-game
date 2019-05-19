@@ -21,9 +21,9 @@ type FileEncoder struct {
 func NewEncoder() FileEncoder {
 	return FileEncoder{
 		make(map[string]keyhandler),
-		defaultKeyHandler,
+		DefaultKeyHandler,
 		make(map[string]valuehandler),
-		defaultValueHandler,
+		DefaultValueHandler,
 	}
 }
 
@@ -63,16 +63,16 @@ func (fe *FileEncoder) Encode(path string) ([]byte, error) {
 
 func DefaultEncoder() FileEncoder {
 	fe := NewEncoder()
-	fe.AddKeyHandler(".json", stripExtKeyHandler)
-	fe.AddValueHandler(".json", jsonValueHandler)
+	fe.AddKeyHandler(".json", StripExtKeyHandler)
+	fe.AddValueHandler(".json", JsonValueHandler)
 	return fe
 }
 
-func defaultKeyHandler(filename string) string {
+func DefaultKeyHandler(filename string) string {
 	return filename
 }
 
-func defaultValueHandler(path string) ([]byte, error) {
+func DefaultValueHandler(path string) ([]byte, error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err
@@ -80,11 +80,11 @@ func defaultValueHandler(path string) ([]byte, error) {
 	return json.Marshal(string(data))
 }
 
-func stripExtKeyHandler(filename string) string {
+func StripExtKeyHandler(filename string) string {
 	return strings.TrimSuffix(filename, filepath.Ext(filename))
 }
 
-func jsonValueHandler(path string) ([]byte, error) {
+func JsonValueHandler(path string) ([]byte, error) {
 	return ioutil.ReadFile(path)
 }
 
