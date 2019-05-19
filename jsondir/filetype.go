@@ -44,21 +44,21 @@ func (fe *FileEncoder) SetDefaultValueHandler(handler valuehandler) {
 }
 
 func (fe *FileEncoder) GetKey(path string) string {
-	 ext := filepath.Ext(path)
-	 if handler, ok := fe.keyhandlers[ext]; ok {
+	ext := filepath.Ext(path)
+	if handler, ok := fe.keyhandlers[ext]; ok {
 		return handler(path)
-	 } else {
+	} else {
 		return fe.defaultKeyHandler(path)
-	 }
+	}
 }
 
 func (fe *FileEncoder) Encode(path string) ([]byte, error) {
-	 ext := filepath.Ext(path)
-	 if handler, ok := fe.valuehandlers[ext]; ok {
+	ext := filepath.Ext(path)
+	if handler, ok := fe.valuehandlers[ext]; ok {
 		return handler(path)
-	 } else {
+	} else {
 		return fe.defaultValueHandler(path)
-	 }
+	}
 }
 
 func DefaultEncoder() FileEncoder {
