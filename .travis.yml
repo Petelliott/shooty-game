@@ -2,6 +2,7 @@
 matrix:
   include:
     - language: go
+      go: "1.12.x"
       go_import_path: github.com/petelliott/shooty-game
       before_install:
         - go get -u golang.org/x/lint/golint
