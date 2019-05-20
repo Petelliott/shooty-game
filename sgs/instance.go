@@ -61,7 +61,7 @@ func (i *Instance) NewTeam(team game.Team) (func(w http.ResponseWriter, r *http.
 	wshandler := func(w http.ResponseWriter, r *http.Request) {
 		conn, err := wsupgrader.Upgrade(w, r, nil)
 		if err != nil {
-			fmt.Println("Failed to set websocket upgrade: %+v", err)
+			fmt.Printf("Failed to set websocket upgrade: %+v", err)
 			return
 		}
 

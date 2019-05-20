@@ -1,0 +1,18 @@
+
+matrix:
+  include:
+    - language: go
+      go_import_path: github.com/petelliott/shooty-game
+      before_install:
+        - go get -u golang.org/x/lint/golint
+        - go get golang.org/x/tools/cmd/cover
+        - go get github.com/mattn/goveralls
+      install:
+        - go get -t github.com/petelliott/shooty-game/sgs
+        - go get -t github.com/petelliott/shooty-game/jsondir
+        - go get -t github.com/petelliott/shooty-game/orderutil
+        - go get -t github.com/petelliott/shooty-game/safews
+      script:
+        - go test -v -coverpkg=./... -covermode=count -coverprofile=coverage.out ./...
+        - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+
