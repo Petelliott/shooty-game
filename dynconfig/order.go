@@ -5,16 +5,15 @@ import (
     "github.com/petelliott/shooty-game/game"
     "strings"
     "plugin"
+	"path"
 )
-
-type OrderDesignator func(options *json.RawMessage) game.Order
 
 func (conf *Dynconfig) NewOrder(name string, options *json.RawMessage) game.Order {
     spec := strings.Split(name, ":")
     pkg := spec[0]
     command := spec[1]
 
-    plug, err := plugin.Open(conf.plugindir + pkg + ".so")
+    plug, err := plugin.Open(path.Join(conf.plugindir, pkg + ".so"))
     if err != nil {
         panic(err)
     }
@@ -24,5 +23,5 @@ func (conf *Dynconfig) NewOrder(name string, options *json.RawMessage) game.Orde
         panic(err)
     }
 
-    return order.(OrderDesignator)(options)
+    return order.(func(options *json.RawMessage) game.Order)(options)
 }
