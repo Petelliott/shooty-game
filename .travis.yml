@@ -2,7 +2,6 @@
 matrix:
   include:
     - language: go
-      go: "1.12.x"
       go_import_path: github.com/petelliott/shooty-game
       before_install:
         - go get -u golang.org/x/lint/golint
@@ -13,9 +12,8 @@ matrix:
         - go get -t github.com/petelliott/shooty-game/jsondir
         - go get -t github.com/petelliott/shooty-game/orderutil
         - go get -t github.com/petelliott/shooty-game/safews
-        - go install github.com/petelliott/shooty-game/sgs
-        - go install github.com/petelliott/shooty-game/game
-        - go install github.com/petelliott/shooty-game/jsondir/d2json
+        - go install -i github.com/petelliott/shooty-game/sgs
+        - go install -i github.com/petelliott/shooty-game/jsondir/d2json
         - make -C gamedir/
       script:
         - go test -v -coverpkg=./... -covermode=count -coverprofile=coverage.out ./...
