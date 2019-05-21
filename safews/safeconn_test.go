@@ -18,7 +18,7 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 	var conns *websocket.Conn
 	var connc *websocket.Conn
 
-	srv := &http.Server{Addr: ":8080"}
+	srv := &http.Server{Addr: "0.0.0.0:8080"}
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		var err error
