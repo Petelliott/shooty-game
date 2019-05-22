@@ -14,5 +14,5 @@ func NewGame(oc OrderConfig, uc UnitsConfig, m Map) *Game {
 
 func (g *Game) AddTeam(x, y int, team Team) {
 	g.World.Spawn(
-		g.UnitsConfig.GetUnitClass("base").Spawn(1000, x, y, team))
+		g.UnitsConfig.GetUnitClass("core:Base").Spawn(1000, x, y, team))
 }
