@@ -18,12 +18,13 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 	var conns *websocket.Conn
 	var connc *websocket.Conn
 
-	srv := &http.Server{Addr: "0.0.0.0:8080"}
+	srv := &http.Server{Addr: "127.0.0.1:8080"}
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		conns, err = upgrader.Upgrade(w, r, nil)
 		if err != nil {
+			fmt.Println(err)
 			t.Error()
 			return
 		}
@@ -41,7 +42,6 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 	connc, _, err := websocket.DefaultDialer.Dial("ws://localhost:8080/ws", nil)
 	if err != nil {
 		fmt.Println(err)
-		t.Error()
 		return nil, nil, func() {
 			conns.Close()
 			connc.Close()
@@ -61,11 +61,12 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 
 func TestLocalAddr(t *testing.T) {
 	sc, cc, clean := connPair(t)
+	defer clean()
+
 	if sc == nil || cc == nil {
 		t.Error()
 		return
 	}
-	defer clean()
 
 	st := sc.LocalAddr().String()
 	if  st != "127.0.0.1:8080" && st != "[::1]:8080" {
