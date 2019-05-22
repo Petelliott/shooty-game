@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"fmt"
 	"strings"
+	"time"
 )
 
 var upgrader = websocket.Upgrader{
@@ -18,7 +19,7 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 	var conns *websocket.Conn
 	var connc *websocket.Conn
 
-	srv := &http.Server{Addr: "127.0.0.1:8080"}
+	srv := &http.Server{Addr: "0.0.0.0:8080"}
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		var err error
@@ -39,6 +40,7 @@ func connPair(t *testing.T) (*SafeConn, *SafeConn, func()) {
 		}
 	}()
 
+	time.Sleep(5 * time.Second)
 	connc, _, err := websocket.DefaultDialer.Dial("ws://localhost:8080/ws", nil)
 	if err != nil {
 		fmt.Println(err)
